@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -11,12 +12,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "employers")
-public class Employer extends User{
-
-	@Id
-	@GeneratedValue
-	@Column(name = "user_id")
-	private int userId;
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Employer extends User {
 
 	@Column(name = "company_name")
 	private String companyName;
@@ -28,6 +25,6 @@ public class Employer extends User{
 	private String phoneNumber;
 
 	@Column(name = "is_accepted")
-	private boolean isActivated;
+	private boolean isAccepted;
 
 }
