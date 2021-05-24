@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.SystemPersonnalService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.SystemPersonnal;
 
 @RestController
@@ -23,7 +24,7 @@ public class SystemPersonnalsController {
 	}
 
 	@GetMapping("/getall")
-	public List<SystemPersonnal> getAll() {
+	public DataResult<List<SystemPersonnal>> getAll() {
 		return this.systemPersonnalService.getAll();
 	}
 }

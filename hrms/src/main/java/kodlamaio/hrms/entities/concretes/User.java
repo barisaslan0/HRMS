@@ -31,7 +31,10 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "password_again")
+	private String password_again;
 
 	@Column(name = "is_verify_email")
-	private boolean verifyMail;
+	private boolean isVerifyEmail;
 }

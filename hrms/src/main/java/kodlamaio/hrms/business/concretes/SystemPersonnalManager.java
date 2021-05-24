@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.SystemPersonnalService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.SystemPersonnalDao;
 import kodlamaio.hrms.entities.concretes.SystemPersonnal;
 
@@ -21,8 +23,8 @@ public class SystemPersonnalManager implements SystemPersonnalService {
 	}
 
 	@Override
-	public List<SystemPersonnal> getAll() {
-		return this.systemPersonnalDao.findAll();
+	public DataResult<List<SystemPersonnal>> getAll() {
+		return new SuccessDataResult<List<SystemPersonnal>>(this.systemPersonnalDao.findAll());
 	}
 
 }
