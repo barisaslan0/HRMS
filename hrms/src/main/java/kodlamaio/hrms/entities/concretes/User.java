@@ -1,5 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,15 +25,15 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "user_id")
+	private int userId;
 
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "password_again")
 	private String password_again;
 
