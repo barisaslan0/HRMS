@@ -1,6 +1,4 @@
 package kodlamaio.hrms.entities.concretes;
-
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,8 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import kodlamaio.hrms.entities.concretes.CV.JobPosition;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,17 +29,8 @@ public class JobPosting {
 	@Column(name = "job_posting_id")
 	private int jobPostingId;
 
-//	@Column(name = "user_id")
-//	private int userId;
-
-//	@Column(name = "job_position_id")
-//	private int jobPositionId;
-
 	@Column(name = "job_description")
 	private String jobDescription;
-
-//	@Column(name = "city_id")
-//	private String cityId;
 
 	@Column(name = "min_salary")
 	private int minSalary;
@@ -55,18 +46,21 @@ public class JobPosting {
 
 	@Column(name = "deadline")
 	private Date deadline;
-	
+
 	@Column(name = "is_active")
 	private boolean isActive;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@JoinColumn(name = "employer_id",referencedColumnName = "user_id")
 	@ManyToOne()
-	@JoinColumn(name = "user_id")
 	private Employer employer;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;

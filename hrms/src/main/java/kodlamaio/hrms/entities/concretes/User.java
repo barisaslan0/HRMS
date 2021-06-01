@@ -1,15 +1,22 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,16 +34,25 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int userId;
-
+	
+	@Email(message = "Email formatı geçersiz")
+	@NotBlank(message = "Email boş olamaz")
 	@Column(name = "email")
 	private String email;
 
+	@NotBlank(message = "Şifre boş olamaz")
 	@Column(name = "password")
 	private String password;
 
+	@NotBlank(message = "Şifre tekrarı boş olamaz")
 	@Column(name = "password_again")
 	private String password_again;
 
 	@Column(name = "is_verify_email")
 	private boolean isVerifyEmail;
+
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@JoinColumn(name = "image_id")
+	@OneToOne()
+	private Image image;
 }
