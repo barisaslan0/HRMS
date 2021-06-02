@@ -1,5 +1,7 @@
 package kodlamaio.hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,8 +44,8 @@ public class Education {
 	private String department;
 
 	@Column(name = "start_year_of_school")
-	private int startYearOfSchool;
+	private LocalDate startYearOfSchool;
 
 	@Column(name = "end_year_of_school")
-	private int endYearOfSchool;
+	private LocalDate endYearOfSchool;
 }

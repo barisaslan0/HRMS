@@ -1,6 +1,9 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import javax.validation.constraints.Null;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,9 @@ public class EducationManager implements EducationService {
 
 	@Override
 	public Result add(Education education) {
+		if (education.getEndYearOfSchool() == null) {
+			education.setEndYearOfSchool(LocalDate.parse("Devam ediyor"));
+		}
 		this.educationDao.save(education);
 		return new SuccessResult("Eğitim durumu eklendi");
 	}
@@ -41,7 +47,7 @@ public class EducationManager implements EducationService {
 
 	@Override
 	public DataResult<List<Education>> getAll() {
-		return new SuccessDataResult<List<Education>>(this.educationDao.findAll(),"Eğitim durumları listelendi");
+		return new SuccessDataResult<List<Education>>(this.educationDao.findAll(), "Eğitim durumları listelendi");
 	}
 
 }

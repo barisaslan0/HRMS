@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -47,8 +48,8 @@ public class WorkExperience {
 	private JobPosition jobPosition;
 
 	@Column(name = "start_year_of_work")
-	private int startYearOfWork;
+	private LocalDate startYearOfWork;
 
 	@Column(name = "end_year_of_work")
-	private int endYearOfWork;
+	private LocalDate endYearOfWork;
 }

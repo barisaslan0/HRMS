@@ -38,10 +38,10 @@ public class ImagesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestParam MultipartFile multipartFile) throws IOException {
+	public Result add(@RequestParam MultipartFile multipartFile,@RequestParam int userId) throws IOException {
 		Map result = this.cloudinaryService.upload(multipartFile);
 		Image image = new Image((String) result.get("original_filename"), (String) result.get("url"),
-				(String) result.get("public_id"));
+				(String) result.get("public_id"),new User(userId));
 		return this.imageService.add(image);
 	}
 

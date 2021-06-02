@@ -48,11 +48,11 @@ public class JobseekerManager implements JobseekerService {
 	@Override
 	public Result add(Jobseeker jobseeker) {
 
-		if (!isFilledAllInformation(jobseeker.getFirstname(), jobseeker.getLastName(), jobseeker.getIdentityNumber(),
-				jobseeker.getBirthYear(), jobseeker.getEmail(), jobseeker.getPassword(), jobseeker.getPassword_again())
-						.isSuccess()) {
-			return new ErrorResult("Tüm alanlar doldurulmalıdır!");
-		} else if (!existEmail(jobseeker.getEmail()).isSuccess()) {
+//		if (!isFilledAllInformation(jobseeker.getFirstname(), jobseeker.getLastName(), jobseeker.getIdentityNumber(),
+//				jobseeker.getBirthYear(), jobseeker.getEmail(), jobseeker.getPassword(), jobseeker.getPassword_again())
+//						.isSuccess()) {
+//			return new ErrorResult("Tüm alanlar doldurulmalıdır!");
+		if (!existEmail(jobseeker.getEmail()).isSuccess()) {
 			return existEmail(jobseeker.getEmail());
 		} else if (!existIdentitynumber(jobseeker.getIdentityNumber()).isSuccess()) {
 			return existIdentitynumber(jobseeker.getIdentityNumber());

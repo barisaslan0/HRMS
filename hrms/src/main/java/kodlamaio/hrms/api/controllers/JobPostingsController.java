@@ -2,6 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class JobPostingsController {
 
 	private JobPostingService jobPostingService;
 
+	@Autowired
 	public JobPostingsController(JobPostingService jobPostingService) {
 		super();
 		this.jobPostingService = jobPostingService;

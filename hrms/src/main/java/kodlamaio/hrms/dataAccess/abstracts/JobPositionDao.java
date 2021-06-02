@@ -6,5 +6,5 @@ import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.CV.JobPosition;
 
 public interface JobPositionDao extends JpaRepository<JobPosition, Integer> {
-	JobPosition findByName(String name);
+	JobPosition findByPositionName(String name);
 }

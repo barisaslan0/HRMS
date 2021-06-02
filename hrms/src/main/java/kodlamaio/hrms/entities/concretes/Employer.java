@@ -12,13 +12,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "employers")
 @PrimaryKeyJoinColumn(name = "user_id")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
 public class Employer extends User {
 
 	@Column(name = "company_name")

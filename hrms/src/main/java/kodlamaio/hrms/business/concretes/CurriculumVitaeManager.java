@@ -12,6 +12,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
 import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 import net.bytebuddy.asm.Advice.This;
 
 @Service
@@ -39,7 +40,12 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 
 	@Override
 	public DataResult<List<CurriculumVitae>> getAll() {
-		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.findAll(),"CV'ler listelendi");
+		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.findAll(), "CV'ler listelendi");
 	}
+
+//	@Override
+//	public DataResult<List<CurriculumVitaeDto>> getCurriculumVitaeDetails() {
+//		return new SuccessDataResult<List<CurriculumVitaeDto>>(this.curriculumVitaeDao.getCurriculumVitaeDetails());
+//	}
 
 }

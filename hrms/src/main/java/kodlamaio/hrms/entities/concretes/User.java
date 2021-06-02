@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -34,12 +35,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@Email(message = "Email formatı geçersiz")
 	@NotBlank(message = "Email boş olamaz")
 	@Column(name = "email")
 	private String email;
 
+	@Size(min = 6,max = 15,message = "şifre min 6 karakterli olmalı")
 	@NotBlank(message = "Şifre boş olamaz")
 	@Column(name = "password")
 	private String password;
@@ -50,9 +52,12 @@ public class User {
 
 	@Column(name = "is_verify_email")
 	private boolean isVerifyEmail;
-
-	@JsonProperty(access = Access.WRITE_ONLY)
-	@JoinColumn(name = "image_id")
-	@OneToOne()
+	
+	@OneToOne(mappedBy = "user")
 	private Image image;
+
+	public User(int userId) {
+		super();
+		this.userId = userId;
+	}
 }

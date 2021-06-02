@@ -32,14 +32,14 @@ public class JobPositionManager implements JobPositionService {
 
 	@Override
 	public DataResult<JobPosition> getByName(String name) {
-		return new SuccessDataResult<JobPosition>(this.jobPositionDao.findByName(name));
+		return new SuccessDataResult<JobPosition>(this.jobPositionDao.findByPositionName(name));
 	}
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		if (!isFilled(jobPosition.getName()).isSuccess()) {
+		if (!isFilled(jobPosition.getPositionName()).isSuccess()) {
 			return new ErrorResult("Alan doldurulmalı!");
-		} else if (!existName(jobPosition.getName()).isSuccess()) {
+		} else if (!existName(jobPosition.getPositionName()).isSuccess()) {
 			return new ErrorResult("Bu iş pozisyonu daha önce eklenmiş!");
 		}
 		this.jobPositionDao.save(jobPosition);
