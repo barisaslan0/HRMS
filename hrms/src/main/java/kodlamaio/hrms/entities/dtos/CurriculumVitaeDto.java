@@ -16,7 +16,7 @@ public class CurriculumVitaeDto {
 	private LocalDate startYearOfSchool;
 	private LocalDate endYearOfSchool;
 	private String workplaceName;
-	//private String positionName;
+	// private String positionName;
 	private LocalDate startYearOfWork;
 	private LocalDate endYearOfWork;
 	private String language;

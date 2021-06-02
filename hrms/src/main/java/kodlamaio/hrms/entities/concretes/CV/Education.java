@@ -31,7 +31,7 @@ public class Education {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "education_id")
 	private int educationId;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "curriculum_vitae_id")
 	@ManyToOne()
