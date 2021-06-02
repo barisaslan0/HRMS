@@ -10,9 +10,9 @@ import kodlamaio.hrms.entities.concretes.CV.Education;
 public interface ImageService {
 	Result add(Image image);
 
-	Result delete(int publicId);
-	
+	Result delete(int imageId);
+
 	DataResult<List<Image>> getAll();
-	
+
 	DataResult<Image> getByImageId(int imageId);
 }

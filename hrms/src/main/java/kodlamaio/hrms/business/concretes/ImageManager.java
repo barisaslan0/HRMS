@@ -34,8 +34,8 @@ public class ImageManager implements ImageService {
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.imageDao.deleteById(id);
+	public Result delete(int imageId) {
+		this.imageDao.deleteById(imageId);
 		return new SuccessResult("Resim silindi");
 	}
 
@@ -46,7 +46,7 @@ public class ImageManager implements ImageService {
 
 	@Override
 	public DataResult<List<Image>> getAll() {
-		return new SuccessDataResult<List<Image>>(this.imageDao.findAll(),"Resimler listelendi");
+		return new SuccessDataResult<List<Image>>(this.imageDao.findAll(), "Resimler listelendi");
 	}
 
 }
