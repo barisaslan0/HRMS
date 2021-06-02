@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,6 +40,7 @@ public class WorkExperience {
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;
 
+	@NotBlank(message = "Çalışma yeri boş olamaz")
 	@Column(name = "workplace_name")
 	private String workplaceName;
 
@@ -47,9 +49,11 @@ public class WorkExperience {
 	@ManyToOne()
 	private JobPosition jobPosition;
 
+	@NotBlank(message = "Başlama tarihi boş olamaz")
 	@Column(name = "start_year_of_work")
 	private LocalDate startYearOfWork;
 
+	@NotBlank(message = "Bitiş tarihi boş olamaz")
 	@Column(name = "end_year_of_work")
 	private LocalDate endYearOfWork;
 }

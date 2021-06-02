@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,15 +38,19 @@ public class Education {
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;
 
+	@NotBlank(message = "Okul adı boş olamaz")
 	@Column(name = "school_name")
 	private String schoolName;
 
+	@NotBlank(message = "Bölüm adı boş olamaz")
 	@Column(name = "department")
 	private String department;
 
+	@NotBlank(message = "Başlama tarihi boş olamaz")
 	@Column(name = "start_year_of_school")
 	private LocalDate startYearOfSchool;
 
+	@NotBlank(message = "Bitiş tarihi boş olamaz")
 	@Column(name = "end_year_of_school")
 	private LocalDate endYearOfSchool;
 }

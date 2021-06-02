@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,12 +25,15 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Employer extends User {
 
+	@NotBlank(message = "Şirket adı boş olamaz")
 	@Column(name = "company_name")
 	private String companyName;
 
+	@NotBlank(message = "Web site boş olamaz")
 	@Column(name = "web_site")
 	private String webSite;
 
+	@NotBlank(message = "Telefon numarası boş olamaz")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 

@@ -1,4 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -29,21 +34,27 @@ public class JobPosting {
 	@Column(name = "job_posting_id")
 	private int jobPostingId;
 
+	@NotBlank(message = "Açıklama boş olamaz")
 	@Column(name = "job_description")
 	private String jobDescription;
 
+	@NotBlank(message = "Minimum maaş skalası boş olamaz")
 	@Column(name = "min_salary")
 	private int minSalary;
 
+	@NotBlank(message = "Maksimum maaş skalası boş olamaz")
 	@Column(name = "max_salary")
 	private int maxSalary;
 
+	@NotBlank(message = "Açık pozisyon sayısı boş olamaz")
 	@Column(name = "number_of_open_position")
 	private int numberOfOpenPosition;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "release_date")
-	private Date releaseDate = new Date(System.currentTimeMillis());
+	private Date releaseDate;
 
+	@NotBlank(message = "Bitiş tarihi boş olamaz")
 	@Column(name = "deadline")
 	private Date deadline;
 
@@ -51,7 +62,7 @@ public class JobPosting {
 	private boolean isActive;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
-	@JoinColumn(name = "employer_id",referencedColumnName = "user_id")
+	@JoinColumn(name = "employer_id", referencedColumnName = "user_id")
 	@ManyToOne()
 	private Employer employer;
 

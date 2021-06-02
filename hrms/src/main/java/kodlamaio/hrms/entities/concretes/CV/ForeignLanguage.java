@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -33,9 +34,11 @@ public class ForeignLanguage {
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;
 
+	@NotBlank(message = "Dil boş olamaz")
 	@Column(name = "language")
 	private String language;
 
+	@NotBlank(message = "Dil seviyesi boş olamaz")
 	@Column(name = "level")
 	private char level;
 }

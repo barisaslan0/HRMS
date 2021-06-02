@@ -41,7 +41,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
-	@Size(min = 6,max = 15,message = "şifre min 6 karakterli olmalı")
+	@Size(min = 6, message = "şifre min 6 karakterli olmalı")
 	@NotBlank(message = "Şifre boş olamaz")
 	@Column(name = "password")
 	private String password;
@@ -52,7 +52,7 @@ public class User {
 
 	@Column(name = "is_verify_email")
 	private boolean isVerifyEmail;
-	
+
 	@OneToOne(mappedBy = "user")
 	private Image image;
 

@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class SystemPersonnal extends User {
 
-	@NotBlank(message = "Alan boş olamaz")
+	@NotBlank(message = "İsim boş olamaz")
 	@Column(name = "first_name")
 	private String firstName;
 
-	@NotBlank(message = "Alan boş olamaz")
+	@NotBlank(message = "Soyisim boş olamaz")
 	@Column(name = "last_name")
 	private String lastName;
 }

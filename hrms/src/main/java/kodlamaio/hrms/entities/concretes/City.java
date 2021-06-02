@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,6 +30,7 @@ public class City {
 	@Column(name = "city_id")
 	private int cityId;
 
+	@NotBlank(message = "Şehir adı boş olamaz")
 	@Column(name = "name")
 	private String name;
 

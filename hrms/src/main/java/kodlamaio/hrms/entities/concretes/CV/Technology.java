@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -34,6 +35,7 @@ public class Technology {
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;
 	
+	@NotBlank(message = "Teknoloji adı boş olamaz")
 	@Column(name = "technology_name")
 	private String technologyName;
 }

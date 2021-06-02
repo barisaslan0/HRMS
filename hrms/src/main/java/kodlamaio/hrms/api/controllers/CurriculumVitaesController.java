@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +31,7 @@ public class CurriculumVitaesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody CurriculumVitae curriculumVitae) {
+	public Result add(@Valid @RequestBody CurriculumVitae curriculumVitae) {
 		return this.curriculumVitaeService.add(curriculumVitae);
 	}
 
