@@ -14,9 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import kodlamaio.hrms.entities.concretes.CV.JobPosition;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,42 +35,44 @@ public class JobPosting {
 	@Column(name = "job_description")
 	private String jobDescription;
 
-	@NotBlank(message = "Minimum maaş skalası boş olamaz")
 	@Column(name = "min_salary")
 	private int minSalary;
 
-	@NotBlank(message = "Maksimum maaş skalası boş olamaz")
 	@Column(name = "max_salary")
 	private int maxSalary;
 
-	@NotBlank(message = "Açık pozisyon sayısı boş olamaz")
 	@Column(name = "number_of_open_position")
 	private int numberOfOpenPosition;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "release_date")
-	private Date releaseDate;
+	private LocalDate releaseDate;
 
-	@NotBlank(message = "Bitiş tarihi boş olamaz")
 	@Column(name = "deadline")
-	private Date deadline;
+	private LocalDate deadline;
 
 	@Column(name = "is_active")
 	private boolean isActive;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@Column(name = "is_confirm")
+	private boolean isConfirm;
+
 	@JoinColumn(name = "employer_id", referencedColumnName = "user_id")
 	@ManyToOne()
 	private Employer employer;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;
 
+	@ManyToOne()
+	@JoinColumn(name = "work_type_id")
+	private WorkType workType;
+
+	@ManyToOne()
+	@JoinColumn(name = "work_time_id")
+	private WorkTime workTime;
 }

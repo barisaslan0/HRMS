@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "employers")
 @PrimaryKeyJoinColumn(name = "user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
 public class Employer extends User {
 
 	@NotBlank(message = "Şirket adı boş olamaz")

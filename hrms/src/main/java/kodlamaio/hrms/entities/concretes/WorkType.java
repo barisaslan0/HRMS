@@ -1,20 +1,18 @@
-package kodlamaio.hrms.entities.concretes.CV;
+package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import kodlamaio.hrms.entities.concretes.JobPosting;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,22 +21,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "job_positions")
+@Table(name = "work_types")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
-public class JobPosition {
-
+public class WorkType {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "job_position_id")
-	private int jobPositionId;
-
-	@NotBlank(message = "Pozisyon adı boş olamaz")
-	@Column(name = "position_name")
-	private String positionName;
-
-	@OneToMany(mappedBy = "jobPosition")
+	@Column(name = "work_type_id")
+	private int workTypeId;
+	
+	@Column(name = "work_type")
+	private String workType;
+	
+	@OneToMany(mappedBy = "workType")
 	private List<JobPosting> jobPostings;
-
-	@OneToMany(mappedBy = "jobPosition")
-	private List<WorkExperience> workExperiences;
+	
 }

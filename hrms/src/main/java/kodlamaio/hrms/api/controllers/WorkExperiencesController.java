@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,24 +19,25 @@ import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
 
 @RestController
 @RequestMapping("/api/workexperiences")
+@CrossOrigin
 public class WorkExperiencesController {
 
-	private WorkExperienceService wokExperienceService;
+	private WorkExperienceService workExperienceService;
 
 	@Autowired
-	public WorkExperiencesController(WorkExperienceService wokExperienceService) {
+	public WorkExperiencesController(WorkExperienceService workExperienceService) {
 		super();
-		this.wokExperienceService = wokExperienceService;
+		this.workExperienceService = workExperienceService;
 	}
 
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody WorkExperience workExperience) {
-		return this.wokExperienceService.add(workExperience);
+		return this.workExperienceService.add(workExperience);
 	}
 
 	@GetMapping("/getall")
 	public DataResult<List<WorkExperience>> getAll() {
-		return this.wokExperienceService.getAll();
+		return this.workExperienceService.getAll();
 	}
 
 }

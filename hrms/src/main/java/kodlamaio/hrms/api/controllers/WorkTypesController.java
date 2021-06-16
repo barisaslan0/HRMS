@@ -10,35 +10,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.TechnologyService;
+import kodlamaio.hrms.business.abstracts.WorkTypeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Jobseeker;
-import kodlamaio.hrms.entities.concretes.CV.Technology;
+import kodlamaio.hrms.entities.concretes.WorkType;
 
 @RestController
-@RequestMapping("/api/technologies")
+@RequestMapping("/api/worktypes")
 @CrossOrigin
-public class TechnologiesController {
-
-	private TechnologyService technologyService;
+public class WorkTypesController {
+	private WorkTypeService workTypeService;
 
 	@Autowired
-	public TechnologiesController(TechnologyService technologyService) {
+	public WorkTypesController(WorkTypeService workTypeService) {
 		super();
-		this.technologyService = technologyService;
-	}
-
-	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Technology technology) {
-		return this.technologyService.add(technology);
+		this.workTypeService = workTypeService;
 	}
 
 	@GetMapping("/getall")
-	public DataResult<List<Technology>> getAll() {
-		return this.technologyService.getAll();
+	public DataResult<List<WorkType>> getAll() {
+		return this.workTypeService.getAll();
+	}
+
+	@PostMapping("/add")
+	public Result add(@Valid @RequestBody WorkType workType) {
+		return this.workTypeService.add(workType);
 	}
 }
