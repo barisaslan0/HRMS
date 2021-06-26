@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,7 +44,6 @@ public class Image {
 	@Column(name = "public_id")
 	private String publicId;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "user_id")
 	@OneToOne()
 	private User user;
@@ -53,7 +53,6 @@ public class Image {
 		this.imageUrl = imageUrl;
 		this.publicId = publicId;
 		this.user = user;
-
 	}
 
 }

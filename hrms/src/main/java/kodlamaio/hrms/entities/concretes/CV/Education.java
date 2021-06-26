@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "educations")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitae"})
 public class Education {
 
 	@Id
@@ -33,7 +34,6 @@ public class Education {
 	@Column(name = "education_id")
 	private int educationId;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "curriculum_vitae_id")
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;
@@ -47,10 +47,10 @@ public class Education {
 	private String department;
 
 	@NotBlank(message = "Başlama tarihi boş olamaz")
-	@Column(name = "start_year_of_school")
-	private LocalDate startYearOfSchool;
+	@Column(name = "start_date_of_school")
+	private LocalDate startDateOfSchool;
 
 	@NotBlank(message = "Bitiş tarihi boş olamaz")
-	@Column(name = "end_year_of_school")
-	private LocalDate endYearOfSchool;
+	@Column(name = "end_date_of_school")
+	private LocalDate endDateOfSchool;
 }

@@ -9,11 +9,11 @@ import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 
 public interface CurriculumVitaeService {
-	Result add(CurriculumVitae curriculumVitae);
-	
+	Result add(CurriculumVitaeDto curriculumVitaeDto);
+
 	DataResult<List<CurriculumVitae>> getAll();
-	
-//	DataResult<List<CurriculumVitaeDto>> getCurriculumVitaeDetails();
 
 	DataResult<List<CurriculumVitae>> getByJobseekerId(int jobseekerId);
+
+	DataResult<CurriculumVitae> getByCurriculumVitaeId(int curriculumVitaeId);
 }

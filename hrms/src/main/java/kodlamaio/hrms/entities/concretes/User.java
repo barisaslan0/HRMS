@@ -46,10 +46,6 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@NotBlank(message = "Şifre tekrarı boş olamaz")
-	@Column(name = "password_again")
-	private String password_again;
-
 	@Column(name = "is_verify_email")
 	private boolean isVerifyEmail;
 

@@ -17,8 +17,10 @@ public interface JobPostingService {
 	DataResult<List<JobPosting>> sortByReleaseDate();
 
 	DataResult<List<JobPosting>> getByCompanyName(String companyName);
-	
+
 	DataResult<JobPosting> getByJobPostingId(int jobPostingId);
+
+	DataResult<JobPosting> getByIsConfirmAndJobPostingId(boolean isConfirm, int jobPostingId);
 
 	Result add(JobPostingDto jobPostingDto);
 

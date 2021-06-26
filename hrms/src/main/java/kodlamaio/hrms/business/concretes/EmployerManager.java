@@ -41,12 +41,10 @@ public class EmployerManager implements EmployerService {
 	public Result add(Employer employer) {
 
 		if (!isFilledAllInformation(employer.getCompanyName(), employer.getWebSite(), employer.getEmail(),
-				employer.getPhoneNumber(), employer.getPassword(), employer.getPassword_again()).isSuccess()) {
+				employer.getPhoneNumber(), employer.getPassword()).isSuccess()) {
 			return new ErrorResult("Tüm alanlar doldurulmalıdır!");
 		} else if (!existEmail(employer.getEmail()).isSuccess()) {
 			return existEmail(employer.getEmail());
-		} else if (!isVerifyPassword(employer.getPassword(), employer.getPassword_again()).isSuccess()) {
-			return new ErrorResult("Şifre eşleşmedi!");
 		} else if (!emailService.isVerified(employer.isVerifyEmail())) {
 			return new ErrorResult("Email doğrulanamadı!");
 		}
@@ -55,9 +53,9 @@ public class EmployerManager implements EmployerService {
 	}
 
 	public Result isFilledAllInformation(String companyName, String webSite, String email, String phoneNumber,
-			String password, String passwordAgain) {
+			String password) {
 		if (companyName.length() > 0 && webSite.length() > 0 && email.length() > 0 && phoneNumber.length() > 0
-				&& password.length() > 0 && passwordAgain.length() > 0) {
+				&& password.length() > 0) {
 			return new SuccessResult();
 		}
 		return new ErrorResult();

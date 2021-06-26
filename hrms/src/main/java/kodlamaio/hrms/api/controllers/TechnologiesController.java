@@ -18,6 +18,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.CV.Technology;
+import kodlamaio.hrms.entities.dtos.TechnologyDto;
 
 @RestController
 @RequestMapping("/api/technologies")
@@ -33,8 +34,8 @@ public class TechnologiesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Technology technology) {
-		return this.technologyService.add(technology);
+	public Result add(@Valid @RequestBody TechnologyDto technologyDto) {
+		return this.technologyService.add(technologyDto);
 	}
 
 	@GetMapping("/getall")

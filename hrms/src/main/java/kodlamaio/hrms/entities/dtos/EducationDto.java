@@ -1,9 +1,7 @@
 package kodlamaio.hrms.entities.dtos;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,12 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurriculumVitaeDto {
+public class EducationDto {
+	private int educationId;
 	private int curriculumVitaeId;
-	private int jobseekerId;
 
-	private String linkedinAddress;
-	private String githubAddress;
+	private String schoolName;
+	private String department;
+	private LocalDate startDateOfSchool;
+	private LocalDate endDateOfSchool;
 
-	private String coverLetter;
 }

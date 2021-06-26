@@ -78,4 +78,10 @@ public class JobPostingsController {
 	public DataResult<JobPosting> getByJobPostingId(@RequestParam int jobPostingId) {
 		return this.jobPostingService.getByJobPostingId(jobPostingId);
 	}
+
+	@GetMapping("/getbyisconfirmandjobpostingid")
+	public DataResult<JobPosting> getByIsConfirmAndJobPostingId(@RequestParam boolean isConfirm,
+			@RequestParam int jobPostingId) {
+		return this.jobPostingService.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId);
+	}
 }

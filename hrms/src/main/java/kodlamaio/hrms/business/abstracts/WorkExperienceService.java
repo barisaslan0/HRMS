@@ -6,9 +6,10 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CV.Education;
 import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
+import kodlamaio.hrms.entities.dtos.WorkExperienceDto;
 
 public interface WorkExperienceService {
-	Result add(WorkExperience workExperience);
+	Result add(WorkExperienceDto workExperienceDto);
 
 	DataResult<List<WorkExperience>> getAll();
 

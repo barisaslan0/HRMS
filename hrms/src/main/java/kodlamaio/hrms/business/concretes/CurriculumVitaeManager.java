@@ -11,7 +11,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
+import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobseekerDao;
 import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
+import kodlamaio.hrms.entities.concretes.CV.Education;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 import net.bytebuddy.asm.Advice.This;
 
@@ -19,15 +22,27 @@ import net.bytebuddy.asm.Advice.This;
 public class CurriculumVitaeManager implements CurriculumVitaeService {
 
 	private CurriculumVitaeDao curriculumVitaeDao;
+	private JobseekerDao jobseekerDao;
+	private EducationDao educationDao;
 
 	@Autowired
-	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao) {
+	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao, JobseekerDao jobseekerDao,
+			EducationDao educationDao) {
 		super();
 		this.curriculumVitaeDao = curriculumVitaeDao;
+		this.jobseekerDao = jobseekerDao;
+		this.educationDao = educationDao;
 	}
 
 	@Override
-	public Result add(CurriculumVitae curriculumVitae) {
+	public Result add(CurriculumVitaeDto curriculumVitaeDto) {
+		CurriculumVitae curriculumVitae = new CurriculumVitae();
+
+		curriculumVitae.setCurriculumVitaeId(0);
+		curriculumVitae.setJobseeker(this.jobseekerDao.getByUserId(curriculumVitaeDto.getJobseekerId()));
+		curriculumVitae.setLinkedinAddress(curriculumVitaeDto.getLinkedinAddress());
+		curriculumVitae.setGithubAddress(curriculumVitaeDto.getGithubAddress());
+		curriculumVitae.setCoverLetter(curriculumVitaeDto.getCoverLetter());
 		this.curriculumVitaeDao.save(curriculumVitae);
 		return new SuccessResult("CV eklendi");
 	}
@@ -43,9 +58,10 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.findAll(), "CV'ler listelendi");
 	}
 
-//	@Override
-//	public DataResult<List<CurriculumVitaeDto>> getCurriculumVitaeDetails() {
-//		return new SuccessDataResult<List<CurriculumVitaeDto>>(this.curriculumVitaeDao.getCurriculumVitaeDetails());
-//	}
+	@Override
+	public DataResult<CurriculumVitae> getByCurriculumVitaeId(int curriculumVitaeId) {
+		return new SuccessDataResult<CurriculumVitae>(
+				this.curriculumVitaeDao.getByCurriculumVitaeId(curriculumVitaeId));
+	}
 
 }

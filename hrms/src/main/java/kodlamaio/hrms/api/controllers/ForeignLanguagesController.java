@@ -18,6 +18,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.CV.ForeignLanguage;
+import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
 
 @RestController
 @RequestMapping("/api/foreignlanguages")
@@ -33,10 +34,10 @@ public class ForeignLanguagesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody ForeignLanguage foreignLanguage) {
-		return this.foreignLanguageService.add(foreignLanguage);
+	public Result add(@Valid @RequestBody ForeignLanguageDto foreignLanguageDto) {
+		return this.foreignLanguageService.add(foreignLanguageDto);
 	}
-	
+
 	@GetMapping("/getall")
 	public DataResult<List<ForeignLanguage>> getAll() {
 		return this.foreignLanguageService.getAll();

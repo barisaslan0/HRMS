@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +20,8 @@ import kodlamaio.hrms.core.helpers.file.CloudinaryService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Image;
-import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
 
 @RestController
 @RequestMapping("/api/images")
@@ -40,10 +39,10 @@ public class ImagesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestParam MultipartFile multipartFile,@RequestParam int userId) throws IOException {
+	public Result addUserImage(@RequestParam MultipartFile multipartFile, @RequestParam int userId) throws IOException {
 		Map result = this.cloudinaryService.upload(multipartFile);
 		Image image = new Image((String) result.get("original_filename"), (String) result.get("url"),
-				(String) result.get("public_id"),new User(userId));
+				(String) result.get("public_id"), new User(userId));
 		return this.imageService.add(image);
 	}
 

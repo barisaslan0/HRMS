@@ -16,6 +16,7 @@ import kodlamaio.hrms.business.abstracts.WorkExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
+import kodlamaio.hrms.entities.dtos.WorkExperienceDto;
 
 @RestController
 @RequestMapping("/api/workexperiences")
@@ -31,8 +32,8 @@ public class WorkExperiencesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody WorkExperience workExperience) {
-		return this.workExperienceService.add(workExperience);
+	public Result add(@Valid @RequestBody WorkExperienceDto workExperienceDto) {
+		return this.workExperienceService.add(workExperienceDto);
 	}
 
 	@GetMapping("/getall")

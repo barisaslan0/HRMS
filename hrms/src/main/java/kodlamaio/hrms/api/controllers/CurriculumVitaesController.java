@@ -18,6 +18,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.CV.CurriculumVitae;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 
 @RestController
 @RequestMapping("/api/curriculumvitaes")
@@ -33,8 +34,8 @@ public class CurriculumVitaesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody CurriculumVitae curriculumVitae) {
-		return this.curriculumVitaeService.add(curriculumVitae);
+	public Result add(@Valid @RequestBody CurriculumVitaeDto curriculumVitaeDto) {
+		return this.curriculumVitaeService.add(curriculumVitaeDto);
 	}
 
 	@GetMapping("/getbyjobseekerid")
@@ -45,6 +46,11 @@ public class CurriculumVitaesController {
 	@GetMapping("/getall")
 	public DataResult<List<CurriculumVitae>> getAll() {
 		return this.curriculumVitaeService.getAll();
+	}
+
+	@GetMapping("/getbycurriculumvitaeid")
+	public DataResult<CurriculumVitae> getBuCurriculumVitaeId(int curriculumVitaeId) {
+		return this.curriculumVitaeService.getByCurriculumVitaeId(curriculumVitaeId);
 	}
 
 }

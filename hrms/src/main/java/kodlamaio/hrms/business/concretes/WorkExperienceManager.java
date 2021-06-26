@@ -11,24 +11,42 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkExperienceDao;
 import kodlamaio.hrms.entities.concretes.CV.Education;
 import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
+import kodlamaio.hrms.entities.dtos.WorkExperienceDto;
 import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class WorkExperienceManager implements WorkExperienceService {
 
 	private WorkExperienceDao workExperienceDao;
+	private CurriculumVitaeDao curriculumVitaeDao;
+	private JobPositionDao jobPositionDao;
 
 	@Autowired
-	public WorkExperienceManager(WorkExperienceDao workExperienceDao) {
+	public WorkExperienceManager(WorkExperienceDao workExperienceDao, CurriculumVitaeDao curriculumVitaeDao,
+			JobPositionDao jobPositionDao) {
 		super();
 		this.workExperienceDao = workExperienceDao;
+		this.curriculumVitaeDao = curriculumVitaeDao;
+		this.jobPositionDao = jobPositionDao;
+
 	}
 
 	@Override
-	public Result add(WorkExperience workExperience) {
+	public Result add(WorkExperienceDto workExperienceDto) {
+		WorkExperience workExperience = new WorkExperience();
+		workExperience.setWorkExperienceId(0);
+		workExperience.setCurriculumVitae(
+				this.curriculumVitaeDao.getByCurriculumVitaeId(workExperienceDto.getCurriculumVitaeId()));
+		workExperience.setWorkplaceName(workExperienceDto.getWorkplaceName());
+		workExperience.setJobPosition(this.jobPositionDao.getByJobPositionId(workExperienceDto.getJobPositionId()));
+		workExperience.setStartDateOfWork(workExperienceDto.getStartDateOfWork());
+		workExperience.setEndDateOfWork(workExperienceDto.getEndDateOfWork());
 		this.workExperienceDao.save(workExperience);
 		return new SuccessResult("İş tecrübesi eklendi");
 	}

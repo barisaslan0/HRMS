@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "foreign_languages")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitae"})
 public class ForeignLanguage {
 
 	@Id
@@ -29,7 +31,6 @@ public class ForeignLanguage {
 	@Column(name = "foreign_language_id")
 	private int foreignLanguageId;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "curriculum_vitae_id")
 	@ManyToOne()
 	private CurriculumVitae curriculumVitae;

@@ -114,4 +114,10 @@ public class JobPostingManager implements JobPostingService {
 		return new SuccessDataResult<JobPosting>(this.jobPostingDao.getByJobPostingId(jobPostingId));
 	}
 
+	@Override
+	public DataResult<JobPosting> getByIsConfirmAndJobPostingId(boolean isConfirm, int jobPostingId) {
+		return new SuccessDataResult<JobPosting>(
+				this.jobPostingDao.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId));
+	}
+
 }

@@ -56,8 +56,6 @@ public class JobseekerManager implements JobseekerService {
 			return existEmail(jobseeker.getEmail());
 		} else if (!existIdentitynumber(jobseeker.getIdentityNumber()).isSuccess()) {
 			return existIdentitynumber(jobseeker.getIdentityNumber());
-		} else if (!isVerifyPassword(jobseeker.getPassword(), jobseeker.getPassword_again()).isSuccess()) {
-			return new ErrorResult("Şifre eşleşmedi!");
 		} else if (!checkUserService.checkIfRealPerson(jobseeker)) {
 			return new ErrorResult("Mernis doğrulama hatalı!");
 		} else if (!emailService.isVerified(jobseeker.isVerifyEmail())) {

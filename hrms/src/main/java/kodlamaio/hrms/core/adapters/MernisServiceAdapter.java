@@ -13,7 +13,7 @@ public class MernisServiceAdapter implements CheckUserService {
 		if (jobseeker.getIdentityNumber() == jobseeker.getIdentityNumber()
 				&& jobseeker.getFirstname() == jobseeker.getFirstname()
 				&& jobseeker.getLastName() == jobseeker.getLastName()
-				&& jobseeker.getBirthYear() == jobseeker.getBirthYear()) {
+				&& jobseeker.getBirthDate() == jobseeker.getBirthDate()) {
 			return true;
 		}
 		return false;

@@ -13,8 +13,10 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
 import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
 import kodlamaio.hrms.entities.concretes.CV.Education;
+import kodlamaio.hrms.entities.dtos.EducationDto;
 import net.bytebuddy.asm.Advice.This;
 
 import org.springframework.data.domain.Sort;
@@ -23,18 +25,26 @@ import org.springframework.data.domain.Sort;
 public class EducationManager implements EducationService {
 
 	private EducationDao educationDao;
+	private CurriculumVitaeDao curriculumVitaeDao;
 
 	@Autowired
-	public EducationManager(EducationDao educationDao) {
+	public EducationManager(EducationDao educationDao, CurriculumVitaeDao curriculumVitaeDao) {
 		super();
 		this.educationDao = educationDao;
+		this.curriculumVitaeDao = curriculumVitaeDao;
 	}
 
 	@Override
-	public Result add(Education education) {
-		if (education.getEndYearOfSchool() == null) {
-			education.setEndYearOfSchool(LocalDate.parse("Devam ediyor"));
-		}
+	public Result add(EducationDto educationDto) {
+		Education education = new Education();
+		education.setEducationId(0);
+		education.setCurriculumVitae(
+				this.curriculumVitaeDao.getByCurriculumVitaeId(educationDto.getCurriculumVitaeId()));
+		education.setSchoolName(educationDto.getSchoolName());
+		education.setDepartment(educationDto.getDepartment());
+		education.setStartDateOfSchool(educationDto.getStartDateOfSchool());
+		education.setEndDateOfSchool(educationDto.getEndDateOfSchool());
+
 		this.educationDao.save(education);
 		return new SuccessResult("Eğitim durumu eklendi");
 	}
