@@ -63,4 +63,16 @@ public class WorkExperienceManager implements WorkExperienceService {
 				"İş tecrübeleri listelendi");
 	}
 
+	@Override
+	public Result update(WorkExperienceDto workExperienceDto) {
+		WorkExperience workExperienceToUpdate = this.workExperienceDao
+				.getByWorkExperienceId(workExperienceDto.getWorkExperienceId());
+		workExperienceToUpdate.setWorkplaceName(workExperienceDto.getWorkplaceName());
+		workExperienceToUpdate
+				.setJobPosition(this.jobPositionDao.getByJobPositionId(workExperienceDto.getJobPositionId()));
+		workExperienceToUpdate.setStartDateOfWork(workExperienceDto.getStartDateOfWork());
+		workExperienceToUpdate.setEndDateOfWork(workExperienceDto.getEndDateOfWork());
+		this.workExperienceDao.save(workExperienceToUpdate);
+		return new SuccessResult("İş deneyimi güncellendi");
+	}
 }

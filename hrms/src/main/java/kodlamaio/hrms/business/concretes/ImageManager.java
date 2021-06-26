@@ -34,6 +34,16 @@ public class ImageManager implements ImageService {
 	}
 
 	@Override
+	public Result update(Image image) {
+		Image imageToUpdate = this.imageDao.getByImageId(image.getImageId());
+		imageToUpdate.setPublicId(image.getPublicId());
+		imageToUpdate.setName(image.getName());
+		imageToUpdate.setImageUrl(image.getImageUrl());
+		this.imageDao.save(imageToUpdate);
+		return new SuccessResult("Resim güncellendi");
+	}
+
+	@Override
 	public Result delete(int imageId) {
 		this.imageDao.deleteById(imageId);
 		return new SuccessResult("Resim silindi");

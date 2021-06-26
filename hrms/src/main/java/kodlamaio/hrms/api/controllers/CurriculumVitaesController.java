@@ -53,4 +53,9 @@ public class CurriculumVitaesController {
 		return this.curriculumVitaeService.getByCurriculumVitaeId(curriculumVitaeId);
 	}
 
+	@PostMapping("/updatecoverletter")
+	public Result updateCoverLetter(@RequestBody int curriculumVitaeId, @RequestBody String coverLetter) {
+		return this.curriculumVitaeService.updateCoverLetter(curriculumVitaeId, coverLetter);
+	}
+
 }

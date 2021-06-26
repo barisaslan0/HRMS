@@ -33,9 +33,9 @@ public class Education {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "education_id")
 	private int educationId;
-
-	@JoinColumn(name = "curriculum_vitae_id")
+	
 	@ManyToOne()
+	@JoinColumn(name = "curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 
 	@NotBlank(message = "Okul adı boş olamaz")

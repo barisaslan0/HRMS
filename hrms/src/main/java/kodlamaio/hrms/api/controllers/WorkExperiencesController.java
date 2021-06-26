@@ -36,6 +36,11 @@ public class WorkExperiencesController {
 		return this.workExperienceService.add(workExperienceDto);
 	}
 
+	@PostMapping("/update")
+	public Result update(@Valid @RequestBody WorkExperienceDto workExperienceDto) {
+		return this.workExperienceService.update(workExperienceDto);
+	}
+
 	@GetMapping("/getall")
 	public DataResult<List<WorkExperience>> getAll() {
 		return this.workExperienceService.getAll();

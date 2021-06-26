@@ -10,6 +10,8 @@ import kodlamaio.hrms.entities.dtos.WorkExperienceDto;
 
 public interface WorkExperienceService {
 	Result add(WorkExperienceDto workExperienceDto);
+	
+	Result update(WorkExperienceDto workExperienceDto);
 
 	DataResult<List<WorkExperience>> getAll();
 

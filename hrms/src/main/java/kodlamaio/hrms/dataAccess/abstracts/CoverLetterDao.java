@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
+import kodlamaio.hrms.entities.concretes.CV.CoverLetter;
 
-public interface WorkExperienceDao extends JpaRepository<WorkExperience, Integer>{
-	WorkExperience getByWorkExperienceId(int workExperienceId);
+public interface CoverLetterDao extends JpaRepository<CoverLetter, Integer> {
+	CoverLetter getByCoverLetterId(int coverLetterId);
 }

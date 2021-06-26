@@ -42,7 +42,6 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		curriculumVitae.setJobseeker(this.jobseekerDao.getByUserId(curriculumVitaeDto.getJobseekerId()));
 		curriculumVitae.setLinkedinAddress(curriculumVitaeDto.getLinkedinAddress());
 		curriculumVitae.setGithubAddress(curriculumVitaeDto.getGithubAddress());
-		curriculumVitae.setCoverLetter(curriculumVitaeDto.getCoverLetter());
 		this.curriculumVitaeDao.save(curriculumVitae);
 		return new SuccessResult("CV eklendi");
 	}
@@ -62,6 +61,12 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	public DataResult<CurriculumVitae> getByCurriculumVitaeId(int curriculumVitaeId) {
 		return new SuccessDataResult<CurriculumVitae>(
 				this.curriculumVitaeDao.getByCurriculumVitaeId(curriculumVitaeId));
+	}
+
+	@Override
+	public Result updateCoverLetter(int curriculumVitaeId,String coverLetter) {
+		this.curriculumVitaeDao.updateCoverLetter(curriculumVitaeId,coverLetter);
+		return new SuccessResult("Ön yazı güncellendi");
 	}
 
 }

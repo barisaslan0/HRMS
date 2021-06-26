@@ -17,6 +17,4 @@ public class CurriculumVitaeDto {
 
 	private String linkedinAddress;
 	private String githubAddress;
-
-	private String coverLetter;
 }

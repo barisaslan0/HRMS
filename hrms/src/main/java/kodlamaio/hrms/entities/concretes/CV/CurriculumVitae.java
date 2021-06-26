@@ -46,8 +46,8 @@ public class CurriculumVitae {
 	@Column(name = "github_address")
 	private String githubAddress;
 
-	@Column(name = "cover_letter")
-	private String coverLetter;
+	@OneToOne(mappedBy = "curriculumVitae")
+	private CoverLetter coverLetter;
 
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<Education> educations;

@@ -16,4 +16,6 @@ public interface CurriculumVitaeService {
 	DataResult<List<CurriculumVitae>> getByJobseekerId(int jobseekerId);
 
 	DataResult<CurriculumVitae> getByCurriculumVitaeId(int curriculumVitaeId);
+
+	Result updateCoverLetter(int curriculumVitaeId, String coverLetter);
 }

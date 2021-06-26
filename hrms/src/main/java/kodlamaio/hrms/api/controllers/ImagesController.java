@@ -39,11 +39,22 @@ public class ImagesController {
 	}
 
 	@PostMapping("/add")
-	public Result addUserImage(@RequestParam MultipartFile multipartFile, @RequestParam int userId) throws IOException {
+	public Result add(@RequestParam MultipartFile multipartFile, @RequestParam int userId) throws IOException {
 		Map result = this.cloudinaryService.upload(multipartFile);
 		Image image = new Image((String) result.get("original_filename"), (String) result.get("url"),
 				(String) result.get("public_id"), new User(userId));
 		return this.imageService.add(image);
+	}
+
+	@PostMapping("/update/{imageId}")
+	public Result update(@RequestParam MultipartFile multipartFile, @PathVariable("imageId") int imageId)
+			throws IOException {
+		Image imageToUpdate = this.imageService.getByImageId(imageId).getData();
+		Map result = this.cloudinaryService.upload(multipartFile);
+		imageToUpdate.setName((String) result.get("original_filename"));
+		imageToUpdate.setImageUrl((String) result.get("url"));
+		imageToUpdate.setPublicId((String) result.get("public_id"));
+		return this.imageService.update(imageToUpdate);
 	}
 
 	@DeleteMapping("/delete/{imageId}")
