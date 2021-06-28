@@ -14,9 +14,4 @@ public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integ
 	List<CurriculumVitae> getByJobseeker_UserId(int jobseekerId);
 
 	CurriculumVitae getByCurriculumVitaeId(int curriculumVitaeId);
-
-	@Modifying
-	@Transactional
-	@Query("update CurriculumVitae c set c.coverLetter=:coverLetter where c.curriculumVitaeId=:curriculumVitaeId ")
-	void updateCoverLetter(int curriculumVitaeId, String coverLetter);
 }

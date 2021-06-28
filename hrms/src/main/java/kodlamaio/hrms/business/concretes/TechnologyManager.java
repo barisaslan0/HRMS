@@ -31,12 +31,26 @@ public class TechnologyManager implements TechnologyService {
 	@Override
 	public Result add(TechnologyDto technologyDto) {
 		Technology technology = new Technology();
-		technology.setTechnologyId(0);
 		technology.setCurriculumVitae(
 				this.curriculumVitaeDao.getByCurriculumVitaeId(technologyDto.getCurriculumVitaeId()));
 		technology.setTechnologyName(technologyDto.getTechnologyName());
 		this.technologyDao.save(technology);
 		return new SuccessResult("Teknoloji eklendi");
+	}
+
+	@Override
+	public Result update(TechnologyDto technologyDto) {
+		Technology technologyToUpdate = this.technologyDao.getByTechnologyId(technologyDto.getTechnologyId());
+		technologyToUpdate.setTechnologyName(technologyDto.getTechnologyName());
+
+		this.technologyDao.save(technologyToUpdate);
+		return new SuccessResult("Teknoloji Güncellendi");
+	}
+
+	@Override
+	public Result delete(int technologyId) {
+		this.technologyDao.deleteById(technologyId);
+		return new SuccessResult("Teknoloji Silindi");
 	}
 
 	@Override

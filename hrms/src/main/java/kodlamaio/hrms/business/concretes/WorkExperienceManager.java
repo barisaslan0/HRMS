@@ -52,18 +52,6 @@ public class WorkExperienceManager implements WorkExperienceService {
 	}
 
 	@Override
-	public DataResult<List<WorkExperience>> sortByEndYearOfWork() {
-		Sort sort = Sort.by(Sort.Direction.DESC, "endYearOfWork");
-		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAll(sort));
-	}
-
-	@Override
-	public DataResult<List<WorkExperience>> getAll() {
-		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAll(),
-				"İş tecrübeleri listelendi");
-	}
-
-	@Override
 	public Result update(WorkExperienceDto workExperienceDto) {
 		WorkExperience workExperienceToUpdate = this.workExperienceDao
 				.getByWorkExperienceId(workExperienceDto.getWorkExperienceId());
@@ -74,5 +62,23 @@ public class WorkExperienceManager implements WorkExperienceService {
 		workExperienceToUpdate.setEndDateOfWork(workExperienceDto.getEndDateOfWork());
 		this.workExperienceDao.save(workExperienceToUpdate);
 		return new SuccessResult("İş deneyimi güncellendi");
+	}
+
+	@Override
+	public Result delete(int workExperienceId) {
+		this.workExperienceDao.deleteById(workExperienceId);
+		return new SuccessResult("İş Deneyimi Silindi");
+	}
+
+	@Override
+	public DataResult<List<WorkExperience>> sortByEndYearOfWork() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "endYearOfWork");
+		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAll(sort));
+	}
+
+	@Override
+	public DataResult<List<WorkExperience>> getAll() {
+		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAll(),
+				"İş tecrübeleri listelendi");
 	}
 }

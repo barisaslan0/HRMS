@@ -11,11 +11,11 @@ import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 public interface CurriculumVitaeService {
 	Result add(CurriculumVitaeDto curriculumVitaeDto);
 
+	Result delete(int curriculumVitaeId);
+
 	DataResult<List<CurriculumVitae>> getAll();
 
 	DataResult<List<CurriculumVitae>> getByJobseekerId(int jobseekerId);
 
 	DataResult<CurriculumVitae> getByCurriculumVitaeId(int curriculumVitaeId);
-
-	Result updateCoverLetter(int curriculumVitaeId, String coverLetter);
 }

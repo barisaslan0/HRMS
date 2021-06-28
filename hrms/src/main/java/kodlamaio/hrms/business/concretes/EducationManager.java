@@ -50,6 +50,24 @@ public class EducationManager implements EducationService {
 	}
 
 	@Override
+	public Result update(EducationDto educationDto) {
+		Education educationToUpdate = this.educationDao.getByEducationId(educationDto.getEducationId());
+		educationToUpdate.setSchoolName(educationDto.getSchoolName());
+		educationToUpdate.setDepartment(educationDto.getDepartment());
+		educationToUpdate.setStartDateOfSchool(educationDto.getStartDateOfSchool());
+		educationToUpdate.setEndDateOfSchool(educationDto.getEndDateOfSchool());
+
+		this.educationDao.save(educationToUpdate);
+		return new SuccessResult("Eğitim Bilgisi Güncellendi");
+	}
+
+	@Override
+	public Result delete(int educationId) {
+		this.educationDao.deleteById(educationId);
+		return new SuccessResult("Eğitim Bilgisi Silindi");
+	}
+
+	@Override
 	public DataResult<List<Education>> sortByEndYearOfSchool() {
 		Sort sort = Sort.by(Sort.Direction.DESC, "endYearOfSchool");
 		return new SuccessDataResult<List<Education>>(this.educationDao.findAll(sort));

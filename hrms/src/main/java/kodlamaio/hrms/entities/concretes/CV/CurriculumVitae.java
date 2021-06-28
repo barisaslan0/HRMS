@@ -1,7 +1,9 @@
 package kodlamaio.hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -40,25 +44,25 @@ public class CurriculumVitae {
 	@ManyToOne()
 	private Jobseeker jobseeker;
 
-	@Column(name = "linkedin_address")
-	private String linkedinAddress;
+	@Column(name = "created_date")
+	private LocalDate createdDate = LocalDate.now();
 
-	@Column(name = "github_address")
-	private String githubAddress;
+	@OneToOne(mappedBy = "curriculumVitae", orphanRemoval = true)
+	private Address address;
 
-	@OneToOne(mappedBy = "curriculumVitae")
+	@OneToOne(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private CoverLetter coverLetter;
 
-	@OneToMany(mappedBy = "curriculumVitae")
+	@OneToMany(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private List<Education> educations;
 
-	@OneToMany(mappedBy = "curriculumVitae")
+	@OneToMany(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private List<WorkExperience> workExperiences;
 
-	@OneToMany(mappedBy = "curriculumVitae")
+	@OneToMany(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private List<ForeignLanguage> foreignLanguages;
 
-	@OneToMany(mappedBy = "curriculumVitae")
+	@OneToMany(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private List<Technology> technologies;
 
 	public CurriculumVitae(int curriculumVitaeId) {

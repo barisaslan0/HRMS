@@ -7,4 +7,6 @@ public interface CoverLetterService {
 	Result add(CoverLetterDto coverLetterDto);
 
 	Result update(CoverLetterDto coverLetterDto);
+	
+	Result delete(int coverLetterId);
 }

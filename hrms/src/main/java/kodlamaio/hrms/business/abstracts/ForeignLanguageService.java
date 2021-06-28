@@ -10,6 +10,10 @@ import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
 
 public interface ForeignLanguageService {
 	Result add(ForeignLanguageDto foreignLanguageDto);
-	
+
+	Result update(ForeignLanguageDto foreignLanguageDto);
+
+	Result delete(int foreignLanguageId);
+
 	DataResult<List<ForeignLanguage>> getAll();
 }

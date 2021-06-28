@@ -12,9 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CurriculumVitaeDto {
-	private int curriculumVitaeId;
 	private int jobseekerId;
-
-	private String linkedinAddress;
-	private String githubAddress;
 }

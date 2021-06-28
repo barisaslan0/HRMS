@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import org.aspectj.runtime.internal.cflowstack.ThreadStackFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,23 @@ public class ForeignLanguageManager implements ForeignLanguageService {
 
 		this.foreignLanguageDao.save(foreignLanguage);
 		return new SuccessResult("Yabancı dil eklendi");
+	}
+
+	@Override
+	public Result update(ForeignLanguageDto foreignLanguageDto) {
+		ForeignLanguage foreignLanguageToUpdate = this.foreignLanguageDao
+				.getByForeignLanguageId(foreignLanguageDto.getForeignLanguageId());
+		foreignLanguageToUpdate.setLanguage(foreignLanguageDto.getLanguage());
+		foreignLanguageToUpdate.setLevel(foreignLanguageDto.getLevel());
+
+		this.foreignLanguageDao.save(foreignLanguageToUpdate);
+		return new SuccessResult("Yabancı Dil Güncellendi");
+	}
+
+	@Override
+	public Result delete(int foreignLanguageId) {
+		this.foreignLanguageDao.deleteById(foreignLanguageId);
+		return new SuccessResult("Yabancı Dil Silindi");
 	}
 
 	@Override

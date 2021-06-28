@@ -6,10 +6,13 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.WorkExperienceService;
@@ -36,9 +39,14 @@ public class WorkExperiencesController {
 		return this.workExperienceService.add(workExperienceDto);
 	}
 
-	@PostMapping("/update")
-	public Result update(@Valid @RequestBody WorkExperienceDto workExperienceDto) {
+	@PutMapping("/update")
+	public Result update(@RequestBody WorkExperienceDto workExperienceDto) {
 		return this.workExperienceService.update(workExperienceDto);
+	}
+
+	@DeleteMapping("/delete")
+	public Result update(@RequestParam int workExperienceId) {
+		return this.workExperienceService.delete(workExperienceId);
 	}
 
 	@GetMapping("/getall")

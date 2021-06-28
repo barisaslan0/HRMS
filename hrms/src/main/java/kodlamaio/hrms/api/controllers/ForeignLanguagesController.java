@@ -6,8 +6,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Jobseeker;
 import kodlamaio.hrms.entities.concretes.CV.ForeignLanguage;
+import kodlamaio.hrms.entities.dtos.CoverLetterDto;
 import kodlamaio.hrms.entities.dtos.ForeignLanguageDto;
 
 @RestController
@@ -36,6 +39,16 @@ public class ForeignLanguagesController {
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody ForeignLanguageDto foreignLanguageDto) {
 		return this.foreignLanguageService.add(foreignLanguageDto);
+	}
+
+	@PutMapping("/update")
+	public Result update(@RequestBody ForeignLanguageDto foreignLanguageDto) {
+		return this.foreignLanguageService.update(foreignLanguageDto);
+	}
+
+	@DeleteMapping("/delete")
+	public Result update(@RequestParam int foreignLanguageId) {
+		return this.foreignLanguageService.delete(foreignLanguageId);
 	}
 
 	@GetMapping("/getall")

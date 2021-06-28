@@ -43,4 +43,10 @@ public class CoverLetterManager implements CoverLetterService {
 		return new SuccessResult("Ön yazı güncellendi");
 	}
 
+	@Override
+	public Result delete(int coverLetterId) {
+		this.coverLetterDao.deleteById(coverLetterId);
+		return new SuccessResult("Ön Yazı Silindi");
+	}
+
 }

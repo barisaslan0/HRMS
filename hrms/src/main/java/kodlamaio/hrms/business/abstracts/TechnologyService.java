@@ -10,5 +10,9 @@ import kodlamaio.hrms.entities.dtos.TechnologyDto;
 public interface TechnologyService {
 	Result add(TechnologyDto technologyDto);
 
+	Result update(TechnologyDto technologyDto);
+
+	Result delete(int technologyId);
+
 	DataResult<List<Technology>> getAll();
 }
