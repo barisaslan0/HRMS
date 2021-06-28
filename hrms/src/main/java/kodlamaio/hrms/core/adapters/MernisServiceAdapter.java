@@ -11,7 +11,7 @@ public class MernisServiceAdapter implements CheckUserService {
 	public boolean checkIfRealPerson(Jobseeker jobseeker) {
 		// simulation
 		if (jobseeker.getIdentityNumber() == jobseeker.getIdentityNumber()
-				&& jobseeker.getFirstname() == jobseeker.getFirstname()
+				&& jobseeker.getFirstName() == jobseeker.getFirstName()
 				&& jobseeker.getLastName() == jobseeker.getLastName()
 				&& jobseeker.getBirthDate() == jobseeker.getBirthDate()) {
 			return true;

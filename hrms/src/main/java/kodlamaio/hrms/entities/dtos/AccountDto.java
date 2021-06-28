@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDto {
-	private int addressId;
+public class AccountDto {
+	private int accountId;
 	private int curriculumVitaeId;
 
-	private String linkedinAddress;
-	private String githubAddress;
+	private String linkedinAccount;
+	private String githubAccount;
 }

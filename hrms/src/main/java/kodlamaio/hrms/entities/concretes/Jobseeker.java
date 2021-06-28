@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "jobseekers")
 @PrimaryKeyJoinColumn(name = "user_id")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitaes" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitaes", "favorites" })
 public class Jobseeker extends User {
 
 	@Size(min = 11, max = 11, message = "TC Kimlik No 11 haneli olmalı")
@@ -35,7 +35,7 @@ public class Jobseeker extends User {
 
 	@NotBlank(message = "İsim boş olamaz")
 	@Column(name = "first_name")
-	private String firstname;
+	private String firstName;
 
 	@NotBlank(message = "Soyisim boş olamaz")
 	@Column(name = "last_name")
@@ -47,5 +47,8 @@ public class Jobseeker extends User {
 
 	@OneToMany(mappedBy = "jobseeker")
 	private List<CurriculumVitae> curriculumVitaes;
+
+	@OneToMany(mappedBy = "jobseeker", orphanRemoval = true)
+	private List<Favorite> favorites;
 
 }

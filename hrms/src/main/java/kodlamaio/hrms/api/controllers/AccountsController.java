@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.AddressService;
+import kodlamaio.hrms.business.abstracts.AccountService;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.dtos.AddressDto;
+import kodlamaio.hrms.entities.dtos.AccountDto;
 
 @RestController
-@RequestMapping("/api/addresses")
+@RequestMapping("/api/accounts")
 @CrossOrigin
-public class AddressesController {
-	private AddressService addressService;
+public class AccountsController {
+	private AccountService accountService;
 
 	@Autowired
-	public AddressesController(AddressService addressService) {
+	public AccountsController(AccountService accountService) {
 		super();
-		this.addressService = addressService;
+		this.accountService = accountService;
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody AddressDto addressDto) {
-		return this.addressService.add(addressDto);
+	public Result add(@Valid @RequestBody AccountDto accountDto) {
+		return this.accountService.add(accountDto);
 	}
 
 	@PutMapping("/update")
-	public Result update(@RequestBody AddressDto addressDto) {
-		return this.addressService.update(addressDto);
+	public Result update(@RequestBody AccountDto accountDto) {
+		return this.accountService.update(accountDto);
 	}
 
 	@DeleteMapping("/delete")
-	public Result delete(@RequestParam int addressId) {
-		return this.addressService.delete(addressId);
+	public Result delete(@RequestParam int accountId) {
+		return this.accountService.delete(accountId);
 	}
 }

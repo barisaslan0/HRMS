@@ -1,4 +1,6 @@
-package kodlamaio.hrms.entities.concretes.CV;
+package kodlamaio.hrms.entities.concretes;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,22 +23,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "addresses")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitae" })
-public class Address {
+@Table(name = "favorites")
+public class Favorite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "address_id")
-	public int addressId;
+	@Column(name = "favorite_id")
+	public int favoriteId;
+
+	@ManyToOne()
+	@JoinColumn(name = "jobseeker_id")
+	private Jobseeker jobseeker;
 
 	@OneToOne()
-	@JoinColumn(name = "curriculum_vitae_id")
-	private CurriculumVitae curriculumVitae;
-
-	@Column(name = "linkedin_address")
-	private String linkedinAddress;
-
-	@Column(name = "github_address")
-	private String githubAddress;
+	@JoinColumn(name = "job_posting_id")
+	private JobPosting jobPosting;
 }

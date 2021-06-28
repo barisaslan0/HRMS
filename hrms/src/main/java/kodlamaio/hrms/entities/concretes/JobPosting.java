@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.entities.concretes.CV.JobPosition;
 import lombok.AllArgsConstructor;
@@ -24,12 +29,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_postings")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler","favorite"})
 public class JobPosting {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "job_posting_id")
 	private int jobPostingId;
+
+	@ManyToOne()
+	@JoinColumn(name = "employer_id", referencedColumnName = "user_id")
+	private Employer employer;
+
+	@OneToOne(mappedBy = "jobPosting", orphanRemoval = true)
+	private Favorite favorite;
 
 	@NotBlank(message = "Açıklama boş olamaz")
 	@Column(name = "job_description")
@@ -55,10 +68,6 @@ public class JobPosting {
 
 	@Column(name = "is_confirm")
 	private boolean isConfirm;
-
-	@JoinColumn(name = "employer_id", referencedColumnName = "user_id")
-	@ManyToOne()
-	private Employer employer;
 
 	@ManyToOne()
 	@JoinColumn(name = "city_id")

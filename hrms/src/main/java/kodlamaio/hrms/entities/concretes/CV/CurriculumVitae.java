@@ -48,7 +48,7 @@ public class CurriculumVitae {
 	private LocalDate createdDate = LocalDate.now();
 
 	@OneToOne(mappedBy = "curriculumVitae", orphanRemoval = true)
-	private Address address;
+	private Account account;
 
 	@OneToOne(mappedBy = "curriculumVitae", orphanRemoval = true)
 	private CoverLetter coverLetter;
