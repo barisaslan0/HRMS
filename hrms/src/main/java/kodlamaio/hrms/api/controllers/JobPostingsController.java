@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosting;
 import kodlamaio.hrms.entities.dtos.JobPostingDto;
+import kodlamaio.hrms.entities.dtos.JobPostingFilter;
 
 @RestController
 @RequestMapping("/api/jobpostings")
@@ -38,14 +40,15 @@ public class JobPostingsController {
 	}
 
 	@GetMapping("/getbyisconfirm")
-	public DataResult<List<JobPosting>> getByIsActive(@RequestParam boolean isConfirm) {
-		return this.jobPostingService.getByIsConfirm(isConfirm);
+	public DataResult<List<JobPosting>> getByIsConfirm(@RequestParam boolean isConfirm, @RequestParam int pageNo,
+			@RequestParam int pageSize) {
+		return this.jobPostingService.getByIsConfirm(isConfirm, pageNo, pageSize);
 	}
 
 	@GetMapping("/getbyisconfirmandisactive")
 	public DataResult<List<JobPosting>> getByIsConfirmAndIsActive(@RequestParam boolean isConfirm,
-			@RequestParam boolean isActive) {
-		return this.jobPostingService.getByIsConfirmAndIsActive(isConfirm, isActive);
+			@RequestParam boolean isActive, @RequestParam int pageNo, @RequestParam int pageSize) {
+		return this.jobPostingService.getByIsConfirmAndIsActive(isConfirm, isActive, pageNo, pageSize);
 	}
 
 	@GetMapping("/sortbyreleasedate")
@@ -84,4 +87,9 @@ public class JobPostingsController {
 			@RequestParam int jobPostingId) {
 		return this.jobPostingService.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId);
 	}
+
+//	@GetMapping("/getbyfilter")
+//	public DataResult<List<JobPosting>> getByFilter(@RequestBody JobPostingFilter jobPostingFilter) {
+//		return this.jobPostingService.getByFilter(jobPostingFilter);
+//	}
 }

@@ -70,12 +70,12 @@ public class JobPosting {
 	private boolean isConfirm;
 
 	@ManyToOne()
-	@JoinColumn(name = "city_id")
-	private City city;
-
-	@ManyToOne()
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;
+	
+	@ManyToOne()
+	@JoinColumn(name = "city_id")
+	private City city;
 
 	@ManyToOne()
 	@JoinColumn(name = "work_type_id")

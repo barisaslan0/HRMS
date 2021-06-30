@@ -7,6 +7,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,7 @@ import kodlamaio.hrms.dataAccess.abstracts.WorkTimeDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.JobPosting;
 import kodlamaio.hrms.entities.dtos.JobPostingDto;
+import kodlamaio.hrms.entities.dtos.JobPostingFilter;
 import net.bytebuddy.asm.Advice.This;
 
 @Service
@@ -93,14 +97,20 @@ public class JobPostingManager implements JobPostingService {
 	}
 
 	@Override
-	public DataResult<List<JobPosting>> getByIsConfirm(boolean isConfirm) {
-		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByIsConfirm(isConfirm));
+	public DataResult<List<JobPosting>> getByIsConfirm(boolean isConfirm, int pageNo, int pageSize) {
+
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return new SuccessDataResult<List<JobPosting>>(
+				this.jobPostingDao.getByIsConfirm(isConfirm, pageable).getContent());
 	}
 
 	@Override
-	public DataResult<List<JobPosting>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive) {
+	public DataResult<List<JobPosting>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, int pageNo,
+			int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 		return new SuccessDataResult<List<JobPosting>>(
-				this.jobPostingDao.getByIsConfirmAndIsActive(isConfirm, isActive));
+				this.jobPostingDao.getByIsConfirmAndIsActive(isConfirm, isActive, pageable).getContent(),
+				this.jobPostingDao.getByIsConfirmAndIsActive(isConfirm, isActive, pageable).getTotalPages() + "");
 	}
 
 	@Override
@@ -119,5 +129,10 @@ public class JobPostingManager implements JobPostingService {
 		return new SuccessDataResult<JobPosting>(
 				this.jobPostingDao.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId));
 	}
+
+//	@Override
+//	public DataResult<List<JobPosting>> getByFilter(JobPostingFilter jobPostingFilter) {
+//		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByFilter(jobPostingFilter));
+//	}
 
 }
