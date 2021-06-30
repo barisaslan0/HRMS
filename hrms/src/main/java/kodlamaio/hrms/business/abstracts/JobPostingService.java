@@ -14,8 +14,6 @@ import kodlamaio.hrms.entities.dtos.JobPostingFilter;
 public interface JobPostingService {
 	DataResult<List<JobPosting>> getAll();
 
-	DataResult<List<JobPosting>> getByIsConfirm(boolean isConfirm, int pageNo, int pageSize);
-
 	DataResult<List<JobPosting>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, int pageNo,
 			int pageSize);
 
@@ -33,5 +31,5 @@ public interface JobPostingService {
 
 	Result updateIsActive(boolean isActive, int userId, int jobPostingId);
 
-//	DataResult<List<JobPosting>> getByFilter(JobPostingFilter jobPostingFilter);
+	DataResult<List<JobPosting>> getByFilter(JobPostingFilter jobPostingFilter, int pageNo, int pageSize);
 }

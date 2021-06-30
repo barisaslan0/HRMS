@@ -97,14 +97,6 @@ public class JobPostingManager implements JobPostingService {
 	}
 
 	@Override
-	public DataResult<List<JobPosting>> getByIsConfirm(boolean isConfirm, int pageNo, int pageSize) {
-
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		return new SuccessDataResult<List<JobPosting>>(
-				this.jobPostingDao.getByIsConfirm(isConfirm, pageable).getContent());
-	}
-
-	@Override
 	public DataResult<List<JobPosting>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, int pageNo,
 			int pageSize) {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
@@ -130,9 +122,12 @@ public class JobPostingManager implements JobPostingService {
 				this.jobPostingDao.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId));
 	}
 
-//	@Override
-//	public DataResult<List<JobPosting>> getByFilter(JobPostingFilter jobPostingFilter) {
-//		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByFilter(jobPostingFilter));
-//	}
+	@Override
+	public DataResult<List<JobPosting>> getByFilter(JobPostingFilter jobPostingFilter, int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return new SuccessDataResult<List<JobPosting>>(
+				this.jobPostingDao.getByFilter(jobPostingFilter, pageable).getContent(),
+				this.jobPostingDao.getByFilter(jobPostingFilter, pageable).getTotalPages() + "");
+	}
 
 }

@@ -14,11 +14,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkExperienceDao;
-import kodlamaio.hrms.entities.concretes.CV.Education;
 import kodlamaio.hrms.entities.concretes.CV.WorkExperience;
-import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 import kodlamaio.hrms.entities.dtos.WorkExperienceDto;
-import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class WorkExperienceManager implements WorkExperienceService {

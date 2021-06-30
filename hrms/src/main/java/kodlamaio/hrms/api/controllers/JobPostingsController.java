@@ -39,12 +39,6 @@ public class JobPostingsController {
 		return this.jobPostingService.getAll();
 	}
 
-	@GetMapping("/getbyisconfirm")
-	public DataResult<List<JobPosting>> getByIsConfirm(@RequestParam boolean isConfirm, @RequestParam int pageNo,
-			@RequestParam int pageSize) {
-		return this.jobPostingService.getByIsConfirm(isConfirm, pageNo, pageSize);
-	}
-
 	@GetMapping("/getbyisconfirmandisactive")
 	public DataResult<List<JobPosting>> getByIsConfirmAndIsActive(@RequestParam boolean isConfirm,
 			@RequestParam boolean isActive, @RequestParam int pageNo, @RequestParam int pageSize) {
@@ -88,8 +82,9 @@ public class JobPostingsController {
 		return this.jobPostingService.getByIsConfirmAndJobPostingId(isConfirm, jobPostingId);
 	}
 
-//	@GetMapping("/getbyfilter")
-//	public DataResult<List<JobPosting>> getByFilter(@RequestBody JobPostingFilter jobPostingFilter) {
-//		return this.jobPostingService.getByFilter(jobPostingFilter);
-//	}
+	@PostMapping("/getbyfilter")
+	public DataResult<List<JobPosting>> getByFilter(@RequestBody JobPostingFilter jobPostingFilter,
+			@RequestParam int pageNo, @RequestParam int pageSize) {
+		return this.jobPostingService.getByFilter(jobPostingFilter, pageNo, pageSize);
+	}
 }
